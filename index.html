@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UPIEDU | Platform Belajar Digital</title>
+
+    <!-- Favicon: ganti ke assets/favicon.png jika sudah punya ikon persegi khusus -->
+    <link rel="icon" type="image/png" href="assets/logo_upi.png">
+    <link rel="apple-touch-icon" href="assets/logo_upi.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="skip-link" href="#materi">Lewati ke materi</a>
+
+    <header class="navbar">
+        <a class="brand" href="#" aria-label="UPIEDU, beranda">
+            <!-- Letakkan file logo di folder assets/ lalu ubah nama file di bawah. Jika file tidak ada, logo otomatis disembunyikan. -->
+            <img class="brand-logo" id="brandLogo" src="assets/logo-upi.png" alt="Logo UPI" hidden>
+            <span class="logo">UPI<span>EDU</span></span>
+        </a>
+        <nav aria-label="Navigasi utama">
+            <a href="#materi">Materi</a>
+            <a href="#kuis">Kuis</a>
+            <a href="#pencapaian">Pencapaian</a>
+        </nav>
+        <div class="nav-right">
+            <div class="xp-chip" title="Level dan XP kamu">
+                <span class="xp-level">Lv <b id="levelNav">1</b></span>
+                <span class="xp-mini"><i id="xpMini"></i></span>
+            </div>
+            <button class="theme-btn" id="themeBtn" aria-label="Ganti tema terang atau gelap">☼</button>
+
+            <!-- Menu akun -->
+            <div class="menu-wrap">
+                <button class="avatar-btn" id="menuBtn" aria-haspopup="menu" aria-expanded="false" aria-controls="userMenu" aria-label="Buka menu akun">
+                    <span class="avatar" data-avatar>S</span>
+                    <span class="caret" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown" id="userMenu" role="menu" hidden>
+                    <div class="menu-head">
+                        <span class="avatar big" data-avatar>S</span>
+                        <div><strong data-username>Siswa</strong><small id="menuLevel">Level 1 · 0 XP</small></div>
+                    </div>
+                    <button role="menuitem" data-open="akun"><span aria-hidden="true">👤</span> Akun Saya</button>
+                    <button role="menuitem" data-open="pengaturan"><span aria-hidden="true">⚙️</span> Pengaturan</button>
+                    <hr>
+                    <p class="menu-label">Kampus</p>
+                    <!-- Ubah tautan sesuai instansi/jurusan kamu -->
+                    <a role="menuitem" href="https://www.upi.edu" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🏛️</span> Website UPI <i>↗</i></a>
+                    <a role="menuitem" href="https://fpmipa.upi.edu" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🔬</span> FPMIPA UPI <i>↗</i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="tag">BELAJAR TEKNOLOGI UNTUK SMA, SMK, DAN MAN</p>
+                <h1>Kuasai teknologi, kumpulkan <span>XP</span>, naik level.</h1>
+                <p class="description">
+                    Baca materi singkat, jawab kuis berwaktu, dan buka lencana.
+                    Delapan modul teknologi yang dekat dengan kehidupan sehari-hari dan dunia kerja.
+                </p>
+                <a href="#materi" class="btn-primary">Mulai Belajar</a>
+
+                <div class="stats">
+                    <div><h3 id="totalMateri">00</h3><p>Modul</p></div>
+                    <div><h3 id="totalSelesai">00</h3><p>Selesai</p></div>
+                    <div><h3 id="totalXp">0</h3><p>Total XP</p></div>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="core"><span id="coreLevel">1</span><small>LEVEL</small></div>
+                <div class="floating-card card-top" id="floatTop">Selesaikan 1 modul untuk lencana pertama</div>
+                <div class="floating-card card-bottom" id="floatBottom">Jawab cepat, dapat bonus XP</div>
+            </div>
+        </section>
+
+        <section class="learning-section" id="materi">
+            <div class="section-heading">
+                <div>
+                    <p class="tag">PETA BELAJAR</p>
+                    <h2>Pilih modul, <span>pelajari</span>, lalu uji dirimu</h2>
+                </div>
+                <input id="searchInput" type="search" placeholder="Cari materi… (tekan /)" aria-label="Cari materi">
+            </div>
+
+            <div class="chips" id="chips" role="group" aria-label="Filter kategori"></div>
+
+            <div class="progress-box">
+                <div class="progress-info">
+                    <span>Progres belajar</span>
+                    <strong id="progressText">0%</strong>
+                </div>
+                <div class="progress-track"><div id="progressBar"></div></div>
+                <p class="level-line">
+                    Level <b id="levelText">1</b> · <span id="xpText">0 / 100 XP</span>
+                    <span class="level-track"><i id="levelBar"></i></span>
+                </p>
+            </div>
+
+            <div class="subject-grid" id="subjectGrid"></div>
+            <p id="emptyMessage" class="empty" hidden>Materi tidak ditemukan. Coba kata kunci lain atau pilih kategori "Semua".</p>
+        </section>
+
+        <section class="quiz-section" id="kuis">
+            <p class="tag">RUANG LATIHAN</p>
+            <h2 id="quizTitle">Siap Menjelajah?</h2>
+            <p id="quizDescription">Pilih satu modul di atas. Kamu akan membaca ringkasan materi dulu, lalu menjawab 3 soal berwaktu.</p>
+            <div class="quiz-box" id="quizBox" aria-live="polite"></div>
+        </section>
+
+        <section class="badge-section" id="pencapaian">
+            <p class="tag">PENCAPAIAN</p>
+            <h2>Koleksi <span>lencana</span></h2>
+            <div class="badge-grid" id="badgeGrid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 UPIEDU · Progres tersimpan di perangkat ini.</p>
+        <button class="btn-ghost" id="resetBtn">Atur ulang progres</button>
+    </footer>
+
+    <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+    <dialog class="panel" id="panelDialog" aria-labelledby="panelTitle"></dialog>
+    <input type="file" id="imageInput" accept="image/*" hidden>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
